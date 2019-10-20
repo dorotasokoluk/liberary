@@ -12,11 +12,12 @@ public class RentalBook {
     private final List<Client> clientList = new ArrayList<>();
     private final List<Book> bookList = new ArrayList<>();
     private final List<Rental> rentalList = new ArrayList<>();
+    private final List<Reservation> reservationList = new ArrayList<>();
 
-    public void addClient(final Client client) {
+    public void addClient(Client client) {
         Optional<Client> foundClient = clientList
                 .stream()
-                .filter(a -> a.getIdNumber() == client.getIdNumber())
+                .filter(a -> a.getIdNumber().equals(client.getIdNumber()))
                 .findAny();
         if (!foundClient.isPresent()) {
             clientList.add(client);
@@ -32,6 +33,4 @@ public class RentalBook {
             bookList.add(book);
         }
     }
-
-
 }
