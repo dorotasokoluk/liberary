@@ -8,7 +8,7 @@ public class Client implements LiberaryTypes<Client> {
     private String firstName;
     private String lastName;
     private String adress;
-    private Long idNumber;
+    private String idNumber;
 
     @Override
     public boolean compareType(Client object) {

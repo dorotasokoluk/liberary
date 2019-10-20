@@ -14,7 +14,7 @@ public class ReservationTest {
     @Test
     public void testReservation() throws ParseException {
         //given
-        Client client = new Client("Jan", "Kowalski", "ul. Szara 1", 1527L);
+        Client client = new Client("Jan", "Kowalski", "ul. Szara 1", "1527");
         Book book = new Book("Władca Pierścieni", "J.R.R. Tolkien", "WYP1111", 1968);
         Date dateFrom = simpleDateFormat.parse("2019-10-20");
         Date dateTo = simpleDateFormat.parse("2019-10-27");
