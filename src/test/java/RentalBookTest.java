@@ -19,7 +19,7 @@ public class RentalBookTest {
         assertEquals("ul. Kolorowa 17, Lublin", client.getAdress());
         assertEquals("890712707", client.getIdNumber());
     }
-    
+
     @Test
     public void testAddBook() {
         // given
@@ -35,6 +35,23 @@ public class RentalBookTest {
         assertEquals("Adam Mickiewicz", book.getAuthor());
         assertEquals("120089", book.getBookId());
         assertEquals(2012, book.getReleaseDate());
+        assertEquals(TypeBook.HISOTRY, book.getTypeBook());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void removeBook() {
+        // given
+        Book book = new Book("Ogniem i mieczem", "Henryk Sienkiewicz", "01889", 2001, TypeBook.HISOTRY);
+        RentalBook rentalBook = new RentalBook();
+
+        // when
+        rentalBook.removeBook(book);
+
+        // then
+        assertEquals("Ogniem i mieczem", book.getTitle());
+        assertEquals("Henryk Sienkiewicz", book.getAuthor());
+        assertEquals("01889", book.getBookId());
+        assertEquals(2001, book.getReleaseDate());
         assertEquals(TypeBook.HISOTRY, book.getTypeBook());
     }
 }
