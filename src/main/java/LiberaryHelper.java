@@ -18,7 +18,7 @@ public class LiberaryHelper<T extends LiberaryTypes> {
                 .findAny();
         if (!exist.isPresent()) {
             list.add(toAdd);
-        } else throw new IllegalArgumentException("Is Present");
+        }
 
     }
 
