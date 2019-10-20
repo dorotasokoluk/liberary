@@ -16,7 +16,7 @@ public class RentalBook {
     public void addClient(final Client client) {
         Optional<Client> foundClient = clientList
                 .stream()
-                .filter(a -> a.getIdNumber().equals(client.getIdNumber()))
+                .filter(a -> a.getIdNumber() == client.getIdNumber())
                 .findAny();
         if (!foundClient.isPresent()) {
             clientList.add(client);
