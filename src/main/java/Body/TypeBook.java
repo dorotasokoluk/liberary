@@ -1,3 +1,5 @@
+package Body;
+
 public enum TypeBook {
     SCIENCE_FICTION,
     DRAMA,

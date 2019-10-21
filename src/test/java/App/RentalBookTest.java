@@ -1,24 +1,13 @@
+package App;
+
+import Body.Book;
+import Body.Client;
+import Body.TypeBook;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class RentalBookTest {
-
-    @Test
-    public void testAddClient() {
-        // given
-        Client client = new Client("Jan", "Kowalski", "ul. Kolorowa 17, Lublin", "890712707");
-        RentalBook rentalBook = new RentalBook();
-
-        // when
-        rentalBook.addClient(client);
-
-        // then
-        assertEquals("Jan", client.getFirstName());
-        assertEquals("Kowalski", client.getLastName());
-        assertEquals("ul. Kolorowa 17, Lublin", client.getAdress());
-        assertEquals("890712707", client.getIdNumber());
-    }
 
     @Test
     public void testAddBook() {

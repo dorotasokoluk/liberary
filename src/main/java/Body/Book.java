@@ -1,6 +1,7 @@
+package Body;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 @AllArgsConstructor
 @Getter
@@ -17,4 +18,3 @@ public class Book implements LiberaryTypes<Book> {
         return false;
     }
 }
-

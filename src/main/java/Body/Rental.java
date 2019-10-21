@@ -1,13 +1,14 @@
+package Body;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.time.LocalDate;
 import java.util.Date;
 
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
 
-public class Reservation {
+public class Rental {
     private Client client;
     private Book book;
     private Date dateFrom;
