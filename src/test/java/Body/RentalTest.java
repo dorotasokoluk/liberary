@@ -43,10 +43,6 @@ public class RentalTest {
         Book book = new Book("Władca Pierścieni", "Tolkien", "2", 1946, TypeBook.HISOTRY);
         Rental rental = new Rental(client, book, dateFrom, dateTo);
         //when
-       long actual = rental.daysBetween(dateFrom, dateTo);
-        long expected = 11l;
-        //then
-        assertEquals(expected, actual);
 
     }
 
