@@ -6,14 +6,22 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
 public class Client {
     private String firstName;
     private String lastName;
     private String adress;
     private String idNumber;
-    List<Book> clientsbookList = new ArrayList<>();
+    private List<Book> clientsbookList = new ArrayList<>();
+
+    public Client(String firstName, String lastName, String adress, String idNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.adress = adress;
+        this.idNumber = idNumber;
+    }
+
 
 }
 

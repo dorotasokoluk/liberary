@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class Book implements LiberaryTypes<Book> {
+public class Book {
 
     private String title;
     private String author;
@@ -13,8 +13,8 @@ public class Book implements LiberaryTypes<Book> {
     private int releaseDate;
     TypeBook typeBook;
 
-    @Override
-    public boolean compareType(Book object) {
-        return false;
-    }
+   // @Override
+  //  public boolean compareType(Book object) {
+   //     return false;
+   // }
 }
