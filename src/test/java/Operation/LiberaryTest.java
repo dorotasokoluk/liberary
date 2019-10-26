@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-public class BookOperationTest {
+public class LiberaryTest {
     @Test
     public void testAddBook() {
         // given

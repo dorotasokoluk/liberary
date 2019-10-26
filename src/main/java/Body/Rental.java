@@ -15,14 +15,18 @@ public class Rental {
     private Date dateFrom;
     private Date dateTo;
 
+    public Rental (Client client, Book book){
+        this.book = book;
+        this.client = client;
+    }
 
-    public long  daysBetween (Date dateFrom, Date dateTo) {
-        Calendar date = (Calendar) dateFrom.clone();
-        long daysBetween = 0;
-        while (date.before(dateTo)) {
-            date.add(Calendar.DAY_OF_MONTH, 1);
-            daysBetween++;
-        }
+    public Rental() {
+
+    }
+
+    public long daysBetween (){
+        long daysBetween = 1;
+
         return daysBetween;
     }
 }

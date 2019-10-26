@@ -2,12 +2,14 @@ package Body;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @AllArgsConstructor
+@Setter
 public class Client {
     private String firstName;
     private String lastName;

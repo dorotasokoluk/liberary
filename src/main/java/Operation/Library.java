@@ -5,6 +5,7 @@ import Body.Client;
 import Body.Rental;
 import Body.Reservation;
 import lombok.Getter;
+import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 
 import java.util.*;
 
@@ -66,6 +67,7 @@ public class Library {
             clientList.add(client);
         }
     }
+
     public void removeClient(Client client) {
         Optional<Client> foundClient = clientList
                 .stream()
@@ -76,15 +78,35 @@ public class Library {
         }
     }
 
-        public void rentBook(Rental rental) {
+    public void rentBook(Book book, Client client) {
+        Rental rental = new Rental();
+        Integer integer = null;
 
+        Optional<Client> clientFound = clientList
+                .stream()
+                .filter(a -> a.getIdNumber().equals(client.getIdNumber()))
+                .findAny();
 
-
-            return ;
+        Book bookinLibrary = booksInLiberary.keySet().stream()
+                .filter(a -> a.getAuthor().equals(book.getAuthor()))
+                .filter(a -> a.getTitle().equals(book.getTitle()))
+                .findAny().orElse(null);
+        if (bookinLibrary != null) {
+        integer = booksInLiberary.get(bookinLibrary);
         }
 
-        public void returnBook() {
+        if (integer>0 && clientFound.isPresent()){
+            booksInLiberary.put(bookinLibrary, integer--);
+            client.getClientsbookList().add(book);
+
 
         }
+
+
+    }
+
+    public void returnBook() {
+
+    }
 
 }
