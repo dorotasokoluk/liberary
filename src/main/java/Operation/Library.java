@@ -7,6 +7,7 @@ import Body.Reservation;
 import lombok.Getter;
 
 
+import java.text.ParseException;
 import java.util.*;
 
 @Getter
@@ -79,7 +80,7 @@ public class Library {
     }
 
     public void rentBook(Book book, Client client) {
-        Rental rental = new Rental();
+        Rental rental = new Rental(client, book);
         Integer integer = null;
 
         Optional<Client> clientFound = clientList
@@ -92,21 +93,48 @@ public class Library {
                 .filter(a -> a.getTitle().equals(book.getTitle()))
                 .findAny().orElse(null);
         if (bookinLibrary != null) {
-        integer = booksInLiberary.get(bookinLibrary);
+            integer = booksInLiberary.get(bookinLibrary);
         }
 
-        if (integer>0 && clientFound.isPresent()){
+        if (integer > 0 && clientFound.isPresent()) {
             booksInLiberary.put(bookinLibrary, integer--);
             client.getClientsbookList().add(book);
-
-
+            rentalList.add(rental);
+            book.setRent(true);
         }
 
 
     }
 
-    public void returnBook() {
+    public void returnBook(Rental rental) {
+// sprawdzam czy taka ksiązka jest w blibiotece
+        Boolean rentaIsPresent = rentalList
+                .stream()
+                .filter(a -> a.getRentalID().equals(rental.getRentalID()))
+                .findAny()
+                .isPresent();
+        if (rentaIsPresent) {
+            Integer integer = booksInLiberary.get(rental.getBook());
+            booksInLiberary.put(rental.getBook(), integer++);
+            rental.getBook().setRent(false);
+            rentalList.remove(rental);
+        }
 
+
+    }
+//funkcja obliczająca karę. Przyjęte, że wypozyczamy ksiązki na 14 dni.
+    // przyjęta została stawka dzienna kary w kwocie 2.50
+
+    public Long calculationOfPenalties(Rental rental) throws ParseException {
+        Long rentalPeriodAllowed = 14L;
+        Long penalty = 0L;
+        Double dailyRate = 2.50;
+        Long daysBetween = rental.daysBetween(rental.getDateFrom(), rental.getDateTo());
+        Long delayedReturn = daysBetween - rentalPeriodAllowed;
+        if (delayedReturn > 0) {
+           penalty = delayedReturn* Long.valueOf(String.valueOf(dailyRate));
+        }
+        return penalty;
     }
 
 }
