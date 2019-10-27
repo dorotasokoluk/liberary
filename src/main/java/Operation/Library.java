@@ -125,14 +125,15 @@ public class Library {
 //funkcja obliczająca karę. Przyjęte, że wypozyczamy ksiązki na 14 dni.
     // przyjęta została stawka dzienna kary w kwocie 2.50
 
-    public Long calculationOfPenalties(Rental rental) throws ParseException {
+    public double calculationOfPenalties(Rental rental) throws ParseException {
         Long rentalPeriodAllowed = 14L;
-        Long penalty = 0L;
-        Double dailyRate = 2.50;
+        double penalty = 0.00;
+        double dailyRate = 2.00;
         Long daysBetween = rental.daysBetween(rental.getDateFrom(), rental.getDateTo());
         Long delayedReturn = daysBetween - rentalPeriodAllowed;
         if (delayedReturn > 0) {
-           penalty = delayedReturn* Long.valueOf(String.valueOf(dailyRate));
+            penalty = dailyRate *delayedReturn;
+            System.out.println("Kara za opóźniony zwrot książek wynosi:" + penalty);
         }
         return penalty;
     }

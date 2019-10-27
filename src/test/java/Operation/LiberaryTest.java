@@ -3,11 +3,15 @@ package Operation;
 import App.RentalBook;
 import Body.Book;
 import Body.Client;
+import Body.Rental;
 import Body.TypeBook;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import static junit.framework.TestCase.assertEquals;
 
 public class LiberaryTest {
     @Test
@@ -43,6 +47,45 @@ public class LiberaryTest {
         Assert.assertEquals("01889", book.getBookId());
         Assert.assertEquals(2001, book.getReleaseDate());
         Assert.assertEquals(TypeBook.HISOTRY, book.getTypeBook());
+    }
+
+    @Test
+    public void calculationOfPenaltiesTesCorrect() throws ParseException {
+        //given
+        String pattern = "yyyy-mm-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        Date dateFrom = simpleDateFormat.parse("2019-10-20");
+        Date dateTo = simpleDateFormat.parse("2019-10-31");
+
+        Client client = new Client("Adam", "Małysz", "Koncertowa 20", "15");
+        Book book = new Book("Władca Pierścieni", "Tolkien", "2", 1946, TypeBook.HISOTRY);
+        Rental rental = new Rental(client, book, dateFrom, dateTo);
+        Library library = new Library();
+        //when
+        double expected = 0L;
+        double actual = library.calculationOfPenalties(rental);
+
+        //then
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void calculationOfPenaltieTest2() throws ParseException {
+        //given
+        String pattern = "yyyy-mm-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        Date dateFrom = simpleDateFormat.parse("2019-10-10");
+        Date dateTo = simpleDateFormat.parse("2019-10-31");
+
+        Client client = new Client("Adam", "Małysz", "Koncertowa 20", "15");
+        Book book = new Book("Władca Pierścieni", "Tolkien", "2", 1946, TypeBook.HISOTRY);
+        Rental rental = new Rental(client, book, dateFrom, dateTo);
+        Library library = new Library();
+        //when
+        double expected = 14;
+        double actual = library.calculationOfPenalties(rental);
+
+        //then
+        assertEquals(expected, actual);
     }
 
 }
